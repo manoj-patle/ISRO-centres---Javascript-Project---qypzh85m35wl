@@ -45,20 +45,42 @@ async function searchInput() {
   mainBodyData.style.display = 'none';
   const resp = await fetch('https://isro.vercel.app/api/centres');
   const data = await resp.json();
-  const newData = data.centres.forEach((element) => {
+  data.centres.forEach((element) => {
     delete element['id'];
-    element.filter((obj) => {
-      return timeStamp[inputData];
-    });
   });
-  console.log(newData);
-  // const new Data = data.centres.filter(obj)
-  // console.log(data.centres);
-  // filteredData(data.centres);
+  if (timeStamp === 'Place') {
+    const filtData = data.centres.filter((center) => center.Place.toLowerCase() === inputData.toLowerCase());
+    console.log(filtData);
+    filteredData(filtData);
+  } else if (timeStamp === 'State') {
+    const filtData = data.centres.filter((center) => center.State.toLowerCase() === inputData.toLowerCase());
+    console.log(filtData);
+    filteredData(filtData);
+  } else if (timeStamp === 'name') {
+    const filtData = data.centres.filter((center) => center.name.toLowerCase() === inputData.toLowerCase());
+    console.log(filtData);
+    filteredData(filtData);
+  }
 }
 
-// const filteredData = (data) => {
-//   const filteredArray = data.filter((obj) => console.log(obj););
-//   // console.log(filteredArray);
-//   // filteredArray = arr.filter( obj => obj.(selected) === "(input)" );
-// };
+const filteredData = (data) => {
+  filterData.textContent = '';
+  if (data.length) {
+    data.forEach((element) => {
+      const obj = Object.keys(element);
+      const tr = document.createElement('tr');
+      obj.forEach((key) => {
+        const td = document.createElement('td');
+        const divtHead = document.createElement('div');
+        const divData = document.createElement('div');
+        divtHead.textContent = key === 'name' ? 'Center' : key === 'Place' ? 'City' : 'State';
+        divData.textContent = element[key];
+        td.append(divtHead, divData);
+        tr.append(td);
+        filterData.append(tr);
+      });
+    });
+  } else {
+    filterData.textContent = 'NO DATA AVAILABLE FOR THE SELECTED SEARCH, PLEASE TRY AGAIN';
+  }
+};
