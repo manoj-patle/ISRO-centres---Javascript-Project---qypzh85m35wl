@@ -57,7 +57,7 @@ td {
   color: white;
   padding: 10px;
   text-align: center;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   max-width: max-content;
   /* border-style: none; */
 }
@@ -116,6 +116,7 @@ input:focus {
   align-items: start;
   height: 30px;
   cursor: pointer;
+  /* border-radius: 40px; */
 }
 .btn {
   padding: 10px;
@@ -134,4 +135,11 @@ input:focus {
 button:hover {
   opacity: 0.5;
   background: rgb(49, 15, 95);
+}
+.filterData {
+  width: 50vw;
+}
+#isInputTyped {
+  color: red;
+  font-family: 'Courier New', Courier, monospace;
 }
