@@ -2,7 +2,7 @@ const dataClass = document.querySelector('.data');
 const mainBodyData = document.querySelector('.mainBody');
 const filterData = document.querySelector('.filterData');
 const btn = document.querySelectorAll('.btn');
-const isInputTyped = document.getElementById('isInputTyped');
+const errorMsg = document.getElementById('isInputTyped');
 const timeFrames = {
   city: 'Place',
   state: 'State',
@@ -54,9 +54,9 @@ async function searchInput() {
     .value.toLowerCase()
     .replace(/\b\w/g, (s) => s.toUpperCase());
   if (inputData === '') {
-    isInputTyped.textContent = 'Please enter input !';
+    errorMsg.textContent = 'Please enter input !';
   } else if (timeStamp === '') {
-    isInputTyped.textContent = 'Please select city / state / center !';
+    errorMsg.textContent = 'Please select city / state / center !';
   } else {
     mainBodyData.style.display = 'none';
     const resp = await fetch('https://isro.vercel.app/api/centres');
