@@ -75,7 +75,7 @@ async function searchInput() {
       const filtData = data.centres.filter((center) => center.State.toLowerCase() === inputData.toLowerCase());
       filteredData(filtData);
     } else if (timeStamp === 'name') {
-      const filtData = data.centres.filter((center) => center.name.toLowerCase() === inputData.toLowerCase());
+      const filtData = data.centres.filter((center) => center.name.toLowerCase().includes(inputData.toLowerCase()));
       filteredData(filtData);
     }
   }
